@@ -15,7 +15,8 @@ delta_call = lambda S, K, T, sigma, r : norm.cdf(d1(S, K, T, sigma, r))
 delta_put = lambda S, K, T, sigma, r : delta_call(S, K, T, sigma, r) - 1
 
 gamma = lambda S, K, T, sigma, r : norm.pdf(d1(S, K, T, sigma, r)) / ( S * sigma * np.sqrt(T) )
-vega = lambda S, K, T, sigma, r : S * norm.pdf(d1(S, K, T, sigma, r)) * np.sqrt(T) 
+vega = lambda S, K, T, sigma, r : S * norm.pdf(d1(S, K, T, sigma, r)) * np.sqrt(T)
+kappa = lambda S, K, T, sigma, r : ( S * norm.pdf(d1(S, K, T, sigma, r)) * np.sqrt(T) ) / (2*sigma) 
 
 theta_call = lambda S, K, T, sigma, r : -1 * ( ( (-S * norm.pdf(d1(S, K, T, sigma, r)) * sigma) / (2 * np.sqrt(T)) ) - ( r * K * np.exp(-r*T) * norm.cdf(d2(S, K, T, sigma, r)) ) )
 theta_put = lambda S, K, T, sigma, r : -1 * ( ( (-S * norm.pdf(d1(S, K, T, sigma, r)) * sigma) / (2 * np.sqrt(T)) ) + ( r * K * np.exp(-r*T) * norm.cdf(-d2(S, K, T, sigma, r)) ) )
